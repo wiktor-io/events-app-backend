@@ -1,0 +1,27 @@
+type Query {
+  events: [Event]
+  eventById(id: ID): Event
+
+  organisers: [Organiser]
+  organiserById(id: ID): Organiser
+}
+
+type Event {
+  id: ID
+  name: String
+  organiser: Organiser
+  descrition: String
+  venue: String
+  venue_location: String
+  availability: Int
+  date: String
+  image: String
+  price: Float
+}
+
+type Organiser {
+  id: ID
+  name: String
+  logo: String
+  description: String
+}
