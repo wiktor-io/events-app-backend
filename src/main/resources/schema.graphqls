@@ -1,16 +1,16 @@
 type Query {
   events: [Event]
-  eventById(id: ID): Event
+  event(id: ID): Event
 
   organisers: [Organiser]
-  organiserById(id: ID): Organiser
+  organiser(id: ID): Organiser
 }
 
 type Event {
   id: ID
   name: String
   organiser: Organiser
-  descrition: String
+  description: String
   venue: String
   venue_location: String
   availability: Int
@@ -24,4 +24,10 @@ type Organiser {
   name: String
   logo: String
   description: String
+  events: [Event]
+}
+
+type Mutation {
+  deleteEvent(id: ID): Event
+  deleteOrganiser(id: ID): Organiser
 }

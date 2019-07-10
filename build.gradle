@@ -18,5 +18,8 @@ dependencies {
     implementation 'com.graphql-java:graphql-java-spring-boot-starter-webmvc:1.0' // NEW
     implementation 'com.google.guava:guava:26.0-jre' // NEW
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+    implementation 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

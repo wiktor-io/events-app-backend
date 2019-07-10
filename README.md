@@ -19,7 +19,7 @@ Simplified data design with only two entities. This is to test GraphQL's feature
 | pk: id
 | fk: organiser
 | name
-| descrition
+| description
 | venue
 | venue_location
 | availability

@@ -49,13 +49,13 @@ public class GraphQLProvider {
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                        .dataFetcher("eventById", graphQLDataFetchers.getEventByIdDataFetcher()))
+                        .dataFetcher("event", graphQLDataFetchers.getEventByIdDataFetcher()))
                 .type(newTypeWiring("Query")
-                        .dataFetcher("organiserById", graphQLDataFetchers.getOrganiserByIdDataFetcher()))
+                        .dataFetcher("organiser", graphQLDataFetchers.getOrganiserByIdDataFetcher()))
                 .type(newTypeWiring("Event")
                         .dataFetcher("organiser", graphQLDataFetchers.getOrganiserFromEventDataFetcher()))
                 .type(newTypeWiring("Organiser")
-                .dataFetcher("events", graphQLDataFetchers.getEventsFromOrganiserDataFetcher()))
+                        .dataFetcher("events", graphQLDataFetchers.getEventsFromOrganiserDataFetcher()))
                 .build();
     }
 }
