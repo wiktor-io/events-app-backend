@@ -1,9 +1,7 @@
 package com.wiktorio.events.model;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import java.util.List;
-
-public interface EventRepository extends CrudRepository<Event, Long> {
-    List<Event> findByOrganiser(Organiser organiser);
+public interface EventRepository extends JpaRepository<Event, Long>, QuerydslPredicateExecutor<Event> {
 }

@@ -21,6 +21,9 @@ import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 @Component
 public class GraphQLProvider {
 
+    @Autowired
+    GraphQLDataFetchers graphQLDataFetchers;
+
     private GraphQL graphQL;
 
     @Bean
@@ -36,9 +39,6 @@ public class GraphQLProvider {
         this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();
     }
 
-    @Autowired
-    GraphQLDataFetchers graphQLDataFetchers;
-
     private GraphQLSchema buildSchema(String sdl) {
         TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(sdl);
         RuntimeWiring runtimeWiring = buildWiring();
@@ -48,14 +48,33 @@ public class GraphQLProvider {
 
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
+                // Queries
                 .type(newTypeWiring("Query")
-                        .dataFetcher("event", graphQLDataFetchers.getEventByIdDataFetcher()))
+                        .dataFetcher("readEvent", graphQLDataFetchers.readEventDataFetcher()))
                 .type(newTypeWiring("Query")
-                        .dataFetcher("organiser", graphQLDataFetchers.getOrganiserByIdDataFetcher()))
+                        .dataFetcher("listEvents", graphQLDataFetchers.listEventsDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("readOrganiser", graphQLDataFetchers.readOrganiserDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("listOrganisers", graphQLDataFetchers.listOrganisersDataFetcher()))
+                // Mutations
+                .type(newTypeWiring("Mutation")
+                        .dataFetcher("createEvent", graphQLDataFetchers.createEventDataFetcher()))
+                .type(newTypeWiring("Mutation")
+                        .dataFetcher("updateEvent", graphQLDataFetchers.updateEventDataFetcher()))
+                .type(newTypeWiring("Mutation")
+                        .dataFetcher("deleteEvent", graphQLDataFetchers.deleteEventDataFetcher()))
+                .type(newTypeWiring("Mutation")
+                        .dataFetcher("createOrganiser", graphQLDataFetchers.createOrganiserDataFetcher()))
+                .type(newTypeWiring("Mutation")
+                        .dataFetcher("updateOrganiser", graphQLDataFetchers.updateOrganiserDataFetcher()))
+                .type(newTypeWiring("Mutation")
+                        .dataFetcher("deleteOrganiser", graphQLDataFetchers.deleteOrganiserDataFetcher()))
+                // Child Objects
                 .type(newTypeWiring("Event")
-                        .dataFetcher("organiser", graphQLDataFetchers.getOrganiserFromEventDataFetcher()))
+                        .dataFetcher("organiser", graphQLDataFetchers.readOrganiserByEventDataFetcher()))
                 .type(newTypeWiring("Organiser")
-                        .dataFetcher("events", graphQLDataFetchers.getEventsFromOrganiserDataFetcher()))
+                        .dataFetcher("events", graphQLDataFetchers.readEventsByOrganiserDataFetcher()))
                 .build();
     }
 }

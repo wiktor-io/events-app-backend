@@ -1,6 +1,7 @@
 package com.wiktorio.events.model;
 
 import javax.persistence.*;
+import java.util.LinkedHashMap;
 
 @Entity
 public class Event {
@@ -20,7 +21,7 @@ public class Event {
     private Integer availability;
     private String date;
     private String image;
-    private Float price;
+    private Double price;
 
     protected Event() {}
 
@@ -32,7 +33,7 @@ public class Event {
         Integer availability,
         String date,
         String image,
-        Float price) {
+        Double price) {
         this.name = name;
         this.organiser = organiser;
         this.description = description;
@@ -123,11 +124,11 @@ public class Event {
         this.image = image;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

@@ -1,9 +1,19 @@
 type Query {
-  events: [Event]
-  event(id: ID): Event
+  listEvents(filter: EventFilter): [Event]
+  readEvent(id: ID): Event
 
-  organisers: [Organiser]
-  organiser(id: ID): Organiser
+  listOrganisers(filter: OrganiserFilter): [Organiser]
+  readOrganiser(id: ID): Organiser
+}
+
+type Mutation {
+  createEvent(input: EventInput!): Event
+  updateEvent(id: ID, input: EventInput): Event
+  deleteEvent(id: ID): ID
+
+  createOrganiser(input: OrganiserInput!): Organiser
+  updateOrganiser(id: ID, input: OrganiserInput): Organiser
+  deleteOrganiser(id: ID): ID
 }
 
 type Event {
@@ -27,7 +37,36 @@ type Organiser {
   events: [Event]
 }
 
-type Mutation {
-  deleteEvent(id: ID): Event
-  deleteOrganiser(id: ID): Organiser
+input EventInput {
+  name: String!
+  description: String
+  venue: String
+  venue_location: String
+  availability: Int
+  date: String
+  image: String
+  price: Float
+  organiser: Int!
+}
+
+input OrganiserInput {
+  name: String!
+  logo: String
+  description: String
+}
+
+input EventFilter {
+  name: String
+  description: String
+  venue: String
+  venue_location: String
+  availability: Int
+  date: String
+  price: Float
+  organiser: Int
+}
+
+input OrganiserFilter {
+  name: String
+  description: String
 }
