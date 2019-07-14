@@ -89,6 +89,60 @@ public class GraphQLDataFetchers {
                 filters.add(matchesVenue_location);
             }
 
+            if (filterMap.get("availability") != null) {
+                Integer availability = Integer.parseInt(filterMap.get("availability").toString());
+                BooleanExpression matchesAvailability = event.availability.goe(availability);
+                filters.add(matchesAvailability);
+            }
+
+            if (filterMap.get("capacity") != null) {
+                Integer capacity = Integer.parseInt(filterMap.get("capacity").toString());
+                BooleanExpression matchesInventory = event.capacity.goe(capacity);
+                filters.add(matchesInventory);
+            }
+
+            if (filterMap.get("type") != null) {
+                String type = filterMap.get("type").toString();
+                BooleanExpression matchesType = event.type.eq(type);
+                filters.add(matchesType);
+            }
+
+            if (filterMap.get("status") != null) {
+                String status = filterMap.get("status").toString();
+                BooleanExpression matchesStatus = event.status.eq(status);
+                filters.add(matchesStatus);
+            }
+
+            if (filterMap.get("reocurrance") != null) {
+                String reocurrance = filterMap.get("reocurrance").toString();
+                BooleanExpression matchesReocurrance = event.reocurrance.eq(reocurrance);
+                filters.add(matchesReocurrance);
+            }
+
+            if (filterMap.get("date_from") != null) {
+                String date_from = filterMap.get("date_from").toString();
+                BooleanExpression matchesDate_from = event.date.goe(date_from);
+                filters.add(matchesDate_from);
+            }
+
+            if (filterMap.get("date_to") != null) {
+                String date_to = filterMap.get("date_to").toString();
+                BooleanExpression matchesDate_to = event.date.loe(date_to);
+                filters.add(matchesDate_to);
+            }
+
+            if (filterMap.get("price_from") != null) {
+                Double price_from = Double.parseDouble(filterMap.get("price_from").toString());
+                BooleanExpression matchesPrice_from = event.price.goe(price_from);
+                filters.add(matchesPrice_from);
+            }
+
+            if (filterMap.get("price_to") != null) {
+                Double price_to = Double.parseDouble(filterMap.get("price_to").toString());
+                BooleanExpression matchesPrice_to = event.price.loe(price_to);
+                filters.add(matchesPrice_to);
+            }
+
             BooleanExpression query = event.isNotNull();
 
             for (Predicate filter :
@@ -148,6 +202,11 @@ public class GraphQLDataFetchers {
                     (String) input.get("venue"),
                     (String) input.get("venue_location"),
                     (Integer) input.get("availability"),
+                    (Integer) input.get("capacity"),
+                    (String) input.get("type"),
+                    (String) input.get("category"),
+                    (String) input.get("status"),
+                    (String) input.get("reocurrance"),
                     (String) input.get("date"),
                     (String) input.get("image"),
                     (Double) input.get("price")
@@ -185,7 +244,25 @@ public class GraphQLDataFetchers {
                 event.setVenue_location((String) input.get("venue_location"));
             }
             if (input.containsKey("availability")) {
-                event.setAvailability((int) input.get("availability"));
+                event.setAvailability((Integer) input.get("availability"));
+            }
+            if (input.containsKey("capacity")) {
+                event.setAvailability((Integer) input.get("capacity"));
+            }
+            if (input.containsKey("type")) {
+                event.setDate((String) input.get("type"));
+            }
+            if (input.containsKey("category")) {
+                event.setDate((String) input.get("category"));
+            }
+            if (input.containsKey("status")) {
+                event.setDate((String) input.get("status"));
+            }
+            if (input.containsKey("reocurrance")) {
+                event.setDate((String) input.get("reocurrance"));
+            }
+            if (input.containsKey("reocurrance")) {
+                event.setDate((String) input.get("reocurrance"));
             }
             if (input.containsKey("date")) {
                 event.setDate((String) input.get("date"));

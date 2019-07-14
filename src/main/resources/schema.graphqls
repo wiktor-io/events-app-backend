@@ -24,6 +24,11 @@ type Event {
   venue: String
   venue_location: String
   availability: Int
+  capacity: Int
+  type: String
+  category: String
+  status: String
+  reocurrance: String
   date: String
   image: String
   price: Float
@@ -39,14 +44,19 @@ type Organiser {
 
 input EventInput {
   name: String!
+  organiser: Int!
   description: String
   venue: String
   venue_location: String
   availability: Int
+  capacity: Int
+  type: String
+  category: String
+  status: String
+  reocurrance: String
   date: String
   image: String
   price: Float
-  organiser: Int!
 }
 
 input OrganiserInput {
@@ -57,13 +67,20 @@ input OrganiserInput {
 
 input EventFilter {
   name: String
+  organiser: Int
   description: String
   venue: String
   venue_location: String
   availability: Int
-  date: String
-  price: Float
-  organiser: Int
+  capacity: Int
+  type: String
+  category: String
+  status: String
+  reocurrance: String
+  date_from: String
+  date_to: String
+  price_from: Float
+  price_to: Float
 }
 
 input OrganiserFilter {

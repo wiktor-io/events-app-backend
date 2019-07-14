@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import sun.tools.tree.BooleanExpression;
 
 @SpringBootApplication
 public class EventsApplication {
@@ -28,7 +27,7 @@ public class EventsApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/" + graphqlurl).allowedOrigins("http://localhost:9000");
+                registry.addMapping("/" + graphqlurl).allowedOrigins("http://localhost:9000", "http://localhost:4200");
             }
         };
     }
@@ -41,7 +40,7 @@ public class EventsApplication {
                     "Edinburgh Playhouse"));
 
             // save an event
-            Event joeBonamassa = eventRepository.save(new Event("Joe Bonamassa", playhouse, "", "Edinburgh Playhouse", "Edinburgh", 1, "12/03/2019", "/img.jpg", 120.00));
+            Event joeBonamassa = eventRepository.save(new Event("Joe Bonamassa Live", playhouse, "Different Shades Of Blue Live", "Edinburgh Playhouse", "Edinburgh", 150, 200,"Music Concert", "Entertainment","published", "single", "12/03/2019", "/img.jpg", 120.00));
         };
     }
 

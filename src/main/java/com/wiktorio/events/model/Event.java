@@ -19,6 +19,11 @@ public class Event {
     private String venue;
     private String venue_location;
     private Integer availability;
+    private Integer capacity;
+    private String type;
+    private String category;
+    private String status;
+    private String reocurrance;
     private String date;
     private String image;
     private Double price;
@@ -31,6 +36,11 @@ public class Event {
         String venue,
         String venue_location,
         Integer availability,
+        Integer capacity,
+        String type,
+        String category,
+        String status,
+        String reocurrance,
         String date,
         String image,
         Double price) {
@@ -40,6 +50,11 @@ public class Event {
         this.venue = venue;
         this.venue_location = venue_location;
         this.availability = availability;
+        this.capacity = capacity;
+        this.type = type;
+        this.category = category;
+        this.status = status;
+        this.reocurrance = reocurrance;
         this.date = date;
         this.image = image;
         this.price = price;
@@ -49,7 +64,7 @@ public class Event {
     public String toString() {
         return String.format(
                 "Event[id=%d, name='%s', description='%s', venue='%s', venue_location='%s', availability='%s', date='%s', image='%s', price='%s']",
-                id, name, description, venue, venue_location, availability, date, image, price);
+                id, name, description, venue, venue_location, availability, capacity, type, reocurrance, date, image, price);
     }
 
     public void setOrganiser(Organiser organiser) {

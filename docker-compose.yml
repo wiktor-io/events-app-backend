@@ -1,6 +1,20 @@
 version: '3'
 
 services:
+
+  backend:
+    image: wkarpinski/events-app-backend
+    container_name: events_backend
+    environment:
+      - SERVER_PORT=${BACKEND_SERVER_PORT}
+      - BACKEND_MYSQL_HOST
+    ports:
+      - ${BACKEND_SERVER_PORT}:${BACKEND_SERVER_PORT}
+    links:
+      - mysql
+    networks:
+      - events-network
+
   mysql:
     image: mariadb
     container_name: events_mysql
@@ -33,7 +47,7 @@ services:
       - "9000:9000"
     environment:
       - PORT=9000
-      - HOST=http://localhost:8080/graphql
+      - HOST=http://localhost:${BACKEND_SERVER_PORT}/graphql
 
 volumes:
   events-data:

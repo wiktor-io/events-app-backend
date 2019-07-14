@@ -33,3 +33,9 @@ Simplified data design with only two entities. This is to test GraphQL's feature
 | name
 | organiser_logo
 | description
+
+## Docker Jib
+
+``` bash
+./gradlew jib --image wkarpinski/events-app-backend
+``` 
