@@ -113,10 +113,10 @@ public class GraphQLDataFetchers {
                 filters.add(matchesStatus);
             }
 
-            if (filterMap.get("reocurrance") != null) {
-                String reocurrance = filterMap.get("reocurrance").toString();
-                BooleanExpression matchesReocurrance = event.reocurrance.eq(reocurrance);
-                filters.add(matchesReocurrance);
+            if (filterMap.get("recurrence") != null) {
+                String recurrence = filterMap.get("recurrence").toString();
+                BooleanExpression matchesRecurrence = event.recurrence.eq(recurrence);
+                filters.add(matchesRecurrence);
             }
 
             if (filterMap.get("date_from") != null) {
@@ -206,7 +206,7 @@ public class GraphQLDataFetchers {
                     (String) input.get("type"),
                     (String) input.get("category"),
                     (String) input.get("status"),
-                    (String) input.get("reocurrance"),
+                    (String) input.get("recurrence"),
                     (String) input.get("date"),
                     (String) input.get("image"),
                     (Double) input.get("price")
@@ -258,11 +258,11 @@ public class GraphQLDataFetchers {
             if (input.containsKey("status")) {
                 event.setDate((String) input.get("status"));
             }
-            if (input.containsKey("reocurrance")) {
-                event.setDate((String) input.get("reocurrance"));
+            if (input.containsKey("recurrence")) {
+                event.setDate((String) input.get("recurrence"));
             }
-            if (input.containsKey("reocurrance")) {
-                event.setDate((String) input.get("reocurrance"));
+            if (input.containsKey("recurrence")) {
+                event.setDate((String) input.get("recurrence"));
             }
             if (input.containsKey("date")) {
                 event.setDate((String) input.get("date"));

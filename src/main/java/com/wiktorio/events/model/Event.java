@@ -1,7 +1,6 @@
 package com.wiktorio.events.model;
 
 import javax.persistence.*;
-import java.util.LinkedHashMap;
 
 @Entity
 public class Event {
@@ -23,7 +22,7 @@ public class Event {
     private String type;
     private String category;
     private String status;
-    private String reocurrance;
+    private String recurrence;
     private String date;
     private String image;
     private Double price;
@@ -40,7 +39,7 @@ public class Event {
         String type,
         String category,
         String status,
-        String reocurrance,
+        String recurrence,
         String date,
         String image,
         Double price) {
@@ -54,7 +53,7 @@ public class Event {
         this.type = type;
         this.category = category;
         this.status = status;
-        this.reocurrance = reocurrance;
+        this.recurrence = recurrence;
         this.date = date;
         this.image = image;
         this.price = price;
@@ -64,7 +63,7 @@ public class Event {
     public String toString() {
         return String.format(
                 "Event[id=%d, name='%s', description='%s', venue='%s', venue_location='%s', availability='%s', date='%s', image='%s', price='%s']",
-                id, name, description, venue, venue_location, availability, capacity, type, reocurrance, date, image, price);
+                id, name, description, venue, venue_location, availability, capacity, type, recurrence, date, image, price);
     }
 
     public void setOrganiser(Organiser organiser) {

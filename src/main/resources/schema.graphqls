@@ -28,7 +28,7 @@ type Event {
   type: String
   category: String
   status: String
-  reocurrance: String
+  recurrence: String
   date: String
   image: String
   price: Float
@@ -53,7 +53,7 @@ input EventInput {
   type: String
   category: String
   status: String
-  reocurrance: String
+  recurrence: String
   date: String
   image: String
   price: Float
@@ -76,7 +76,7 @@ input EventFilter {
   type: String
   category: String
   status: String
-  reocurrance: String
+  recurrence: String
   date_from: String
   date_to: String
   price_from: Float
