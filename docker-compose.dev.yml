@@ -30,10 +30,32 @@ services:
       - events-data:/var/lib/mysql:delegated
     env_file:
       - .env
-    expose:
-      - "3306"
+    ports:
+      - "3306:3306"
     networks:
       - events-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: events_phpmyadmin
+    links:
+      - mysql:db
+    ports:
+      - "8089:80"
+    networks:
+      - events-network
+    environment:
+      - PMA_USER=${MYSQL_USER}
+      - PMA_PASSWORD=${MYSQL_PASSWORD}
+
+  graphql-playground:
+    image: mkrou/graphql-playground-docker
+    container_name: events_graphql-playground
+    ports:
+      - "9000:9000"
+    environment:
+      - PORT=9000
+      - HOST=http://localhost:${BACKEND_SERVER_PORT}/graphql
 
 volumes:
   events-data:

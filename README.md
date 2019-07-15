@@ -6,8 +6,12 @@ This is a GraphQL server powered by Spring Boot. It will serve data to the Angul
 
 This project requires Docker to work. Alternatively one can set up MySQL and compile the backend and frontend and run them individually.
 
-1. Clone repository to your develoment environment.
-1. `docker-compose up -d`
+1. Clone this repository (this is the only repository you will need to run both frontend and backend of the app. I have added a "docker-compose.yml" file which includes the image for the frontend app as well).
+2. While in the project directory run `docker-compose up -d`. Make sure your machine can listen on the following ports: 4200, 8080.
+3. Note: java doesn't wait for the MySQL connection to be ready so the backend may crash if mysql doesn't initialise on time. Wait a few minutes before running `docker-compose up -d` again to fix this*.
+4. Visit http://localhost:4200/ to preview the app.
+
+This is a common issue for docker containers and is usually solved by using a wait-for-it script. In this example I am using a jib image which does not offer this option.
 
 ## TODOs
 
