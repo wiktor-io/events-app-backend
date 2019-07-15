@@ -110,7 +110,7 @@ public class Event {
         return venue_location;
     }
 
-    public void setVenue_location(String venue_location) {
+    public void setVenueLocation(String venue_location) {
         this.venue_location = venue_location;
     }
 
@@ -120,6 +120,46 @@ public class Event {
 
     public void setAvailability(Integer availability) {
         this.availability = availability;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRecurrence() {
+        return recurrence;
+    }
+
+    public void setRecurrence(String recurrence) {
+        this.recurrence = recurrence;
     }
 
     public String getDate() {

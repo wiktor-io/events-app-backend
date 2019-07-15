@@ -40,7 +40,7 @@ public class EventsApplication {
                     "Edinburgh Playhouse"));
 
             // save an event
-            Event joeBonamassa = eventRepository.save(new Event("Joe Bonamassa Live", playhouse, "Different Shades Of Blue Live", "Edinburgh Playhouse", "Edinburgh", 150, 200,"Music Concert", "Entertainment","published", "single", "12/03/2019", "/img.jpg", 120.00));
+            Event joeBonamassa = eventRepository.save(new Event("Joe Bonamassa Live", playhouse, "Different Shades Of Blue Live", "Edinburgh Playhouse", "Edinburgh", 150, 200,"Music Concert", "Entertainment","published", "single", "2019-03-12", "/img.jpg", 120.00));
         };
     }
 

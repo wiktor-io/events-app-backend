@@ -4,13 +4,10 @@ package com.wiktorio.events;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.wiktorio.events.model.*;
 import graphql.GraphQLException;
 import graphql.schema.DataFetcher;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import sun.awt.image.ImageWatched;
 
 import java.util.*;
 
@@ -217,19 +214,21 @@ public class GraphQLDataFetchers {
     public DataFetcher updateEventDataFetcher() {
         return dataFetchingEnvironment -> {
             LinkedHashMap input = dataFetchingEnvironment.getArgument("input");
-            Long eventId = Long.parseLong(input.get("id").toString());
-            Long organiserId = Long.parseLong(input.get("organiser").toString());
+            Long eventId = Long.parseLong(dataFetchingEnvironment.getArgument("id").toString());
 
             Event event = eventRepository.findById(eventId).orElse(null);
-            Organiser organiser = organiserRepository.findById(organiserId).orElse(null);
             if (event == null) {
                 throw new GraphQLException("Event not found!");
             }
-            if (organiser == null) {
-                throw new GraphQLException("Organiser not found!");
-            }
 
-            event.setOrganiser(organiser);
+            if (input.get("organiser") != null) {
+                Long organiserId = Long.parseLong(input.get("organiser").toString());
+                Organiser organiser = organiserRepository.findById(organiserId).orElse(null);
+                if (organiser == null) {
+                    throw new GraphQLException("Organiser not found!");
+                }
+                event.setOrganiser(organiser);
+            }
 
             if (input.containsKey("name")) {
                 event.setName((String) input.get("name"));
@@ -241,28 +240,25 @@ public class GraphQLDataFetchers {
                 event.setVenue((String) input.get("venue"));
             }
             if (input.containsKey("venue_location")) {
-                event.setVenue_location((String) input.get("venue_location"));
+                event.setVenueLocation((String) input.get("venue_location"));
             }
             if (input.containsKey("availability")) {
                 event.setAvailability((Integer) input.get("availability"));
             }
             if (input.containsKey("capacity")) {
-                event.setAvailability((Integer) input.get("capacity"));
+                event.setCapacity((Integer) input.get("capacity"));
             }
             if (input.containsKey("type")) {
-                event.setDate((String) input.get("type"));
+                event.setType((String) input.get("type"));
             }
             if (input.containsKey("category")) {
-                event.setDate((String) input.get("category"));
+                event.setCategory((String) input.get("category"));
             }
             if (input.containsKey("status")) {
-                event.setDate((String) input.get("status"));
+                event.setStatus((String) input.get("status"));
             }
             if (input.containsKey("recurrence")) {
-                event.setDate((String) input.get("recurrence"));
-            }
-            if (input.containsKey("recurrence")) {
-                event.setDate((String) input.get("recurrence"));
+                event.setRecurrence((String) input.get("recurrence"));
             }
             if (input.containsKey("date")) {
                 event.setDate((String) input.get("date"));
@@ -273,6 +269,8 @@ public class GraphQLDataFetchers {
             if (input.containsKey("price")) {
                 event.setPrice((Double) input.get("price"));
             }
+
+            eventRepository.save(event);
 
             return event;
         };

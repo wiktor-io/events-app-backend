@@ -43,8 +43,9 @@ type Organiser {
 }
 
 input EventInput {
+  id: Int
   name: String!
-  organiser: Int!
+  organiser: Int
   description: String
   venue: String
   venue_location: String
@@ -57,12 +58,14 @@ input EventInput {
   date: String
   image: String
   price: Float
+  __typename: String
 }
 
 input OrganiserInput {
   name: String!
   logo: String
   description: String
+  __typename: String
 }
 
 input EventFilter {
