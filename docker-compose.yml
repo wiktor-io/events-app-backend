@@ -2,6 +2,14 @@ version: '3'
 
 services:
 
+  frontend:
+    image: wkarpinski/events-app-frontend
+    container_name: events_frontend
+    ports:
+      - 4200:4200
+    networks:
+      - events-network
+
   backend:
     image: wkarpinski/events-app-backend
     container_name: events_backend
