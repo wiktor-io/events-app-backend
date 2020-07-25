@@ -1,0 +1,12 @@
+{
+  "summary": {
+    "title": "Example Threat Model",
+    "owner": "Wiktor",
+    "description": "Backend threats"
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [],
+    "reviewer": "Wiktor"
+  }
+}
